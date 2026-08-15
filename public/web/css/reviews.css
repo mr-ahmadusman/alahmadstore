@@ -1,0 +1,563 @@
+/* ==========================================================================
+   AL AHMAD STORE — Reviews System Styles
+   Covers: product-detail review form + list, home page review slider,
+   media thumbnails (image/video), lightbox modal
+   ========================================================================== */
+
+/* -------------------- Shared vars -------------------- */
+.reviews-section {
+    --review-primary: #6c5ce7;
+    --review-primary-light: #a29bfe;
+    --review-star: #f5a623;
+    --review-border: #ececec;
+    --review-text-muted: #8a8a8a;
+}
+
+/* -------------------- Section header / summary -------------------- */
+.reviews-section .section-capture {
+    margin-bottom: 28px;
+}
+
+.reviews-section .review-summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+.review-summary-stars i {
+    color: var(--review-star);
+    font-size: 19px;
+    margin-right: 2px;
+}
+
+.review-summary-text {
+    font-size: 14px;
+    color: #555;
+    font-weight: 600;
+    background: #f6f5ff;
+    padding: 5px 14px;
+    border-radius: 20px;
+}
+
+/* -------------------- Write a review form -------------------- */
+.review-form-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(20, 20, 43, 0.06);
+    padding: 34px;
+    border: 1px solid var(--review-border);
+    height: 100%;
+    transition: box-shadow 0.3s ease;
+}
+
+.review-form-card:hover {
+    box-shadow: 0 16px 48px rgba(20, 20, 43, 0.09);
+}
+
+.review-form-title {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+    position: relative;
+    padding-bottom: 14px;
+}
+
+.review-form-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 46px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--review-primary), var(--review-primary-light));
+    border-radius: 3px;
+}
+
+.review-label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    letter-spacing: 0.2px;
+}
+
+.review-label small {
+    font-weight: 400;
+    color: var(--review-text-muted);
+}
+
+.review-input {
+    width: 100%;
+    border: 1.5px solid #e6e6e6;
+    border-radius: 12px;
+    background: #fafafa;
+    padding: 12px 16px;
+    font-size: 14.5px;
+    color: #222;
+    transition: all 0.25s ease;
+}
+
+.review-input::placeholder {
+    color: #aaa;
+}
+
+.review-input:focus {
+    outline: none;
+    border-color: var(--review-primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.12);
+}
+
+.review-input[type="file"] {
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+textarea.review-input {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* Star rating input */
+.review-rating-input {
+    background: #fbfaff;
+    border: 1px dashed #e2ddff;
+    border-radius: 12px;
+    padding: 14px 18px;
+}
+
+.star-rating-input {
+    display: flex;
+    gap: 8px;
+    font-size: 28px;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+.star-rating-input i {
+    color: #dcdcdc;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.star-rating-input i.active {
+    color: var(--review-star);
+    filter: drop-shadow(0 2px 4px rgba(245, 166, 35, 0.35));
+}
+
+.star-rating-input i:hover {
+    transform: scale(1.2);
+}
+
+.review-submit-btn {
+    border: none;
+    margin-top: 8px;
+    padding: 13px 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--review-primary), #8477e8);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 10px 24px rgba(108, 92, 231, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(108, 92, 231, 0.4);
+}
+
+/* -------------------- Review cards (list) -------------------- */
+.review-list-wrap {
+    max-height: 560px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.review-list-wrap::-webkit-scrollbar {
+    width: 6px;
+}
+
+.review-list-wrap::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 6px;
+}
+
+.review-list-wrap::-webkit-scrollbar-thumb:hover {
+    background: var(--review-primary-light);
+}
+
+.review-card {
+    background: #fff;
+    border: 1px solid var(--review-border);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 16px;
+    animation: reviewFadeUp 0.4s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.review-card:hover {
+    box-shadow: 0 10px 28px rgba(20, 20, 43, 0.06);
+    transform: translateY(-2px);
+}
+
+.review-card-head {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 12px;
+}
+
+.review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--review-primary), var(--review-primary-light));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+}
+
+.review-head-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.review-head-info h6 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.review-head-info span {
+    font-size: 12px;
+    color: var(--review-text-muted);
+}
+
+.review-card-stars {
+    white-space: nowrap;
+}
+
+.review-card-stars i {
+    color: var(--review-star);
+    font-size: 13px;
+}
+
+.review-card-comment {
+    font-size: 14.5px;
+    color: #4a4a4a;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.review-empty {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--review-text-muted);
+    background: #fafafa;
+    border-radius: 16px;
+    border: 1px dashed #e2e2e2;
+}
+
+@keyframes reviewFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------- Review media thumbnails (image + video, same row) -------------------- */
+.review-card-media {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.review-media-item {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--review-border);
+    cursor: pointer;
+    flex-shrink: 0;
+    background: #000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-media-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.review-media-item img,
+.review-media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.review-media-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--review-primary);
+    font-size: 12px;
+    pointer-events: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* -------------------- Lightbox / slider modal -------------------- */
+.review-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 15, 0.94);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    animation: reviewLightboxFade 0.2s ease;
+}
+
+.review-lightbox.active {
+    display: flex;
+}
+
+@keyframes reviewLightboxFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.review-lightbox-stage {
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-lightbox-img,
+.review-lightbox-video {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+    display: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.review-lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.review-lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.review-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+}
+
+.review-lightbox-nav:hover {
+    background: var(--review-primary);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.review-lightbox-prev {
+    left: 24px;
+}
+
+.review-lightbox-next {
+    right: 24px;
+}
+
+@media (max-width: 575px) {
+    .review-lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    .review-lightbox-prev { left: 10px; }
+    .review-lightbox-next { right: 10px; }
+    .review-lightbox-close {
+        top: 12px;
+        right: 14px;
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+    }
+}
+
+/* -------------------- Home page review slider -------------------- */
+.home-reviews {
+    position: relative;
+}
+
+.home-reviews .home-review-slider {
+    margin-top: 4px;
+}
+
+.home-review-card {
+    background: #fff;
+    border: 1px solid var(--review-border);
+    border-radius: 18px;
+    padding: 26px;
+    margin: 8px 10px 34px;
+    box-shadow: 0 8px 28px rgba(20, 20, 43, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: calc(100% - 34px);
+    display: flex;
+    flex-direction: column;
+}
+
+.home-review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 46px rgba(20, 20, 43, 0.1);
+    border-color: #e2ddff;
+}
+
+.home-review-card .review-card-head {
+    margin-bottom: 14px;
+}
+
+.home-review-card .review-card-comment {
+    flex: 1;
+}
+
+.home-review-card .review-card-media {
+    margin-bottom: 12px;
+}
+
+.review-product-link {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--review-primary);
+    text-decoration: none;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s ease;
+}
+
+.review-product-link:hover {
+    gap: 8px;
+    color: #5a4bd6;
+}
+
+.home-review-nav {
+    margin-top: 6px;
+    justify-content: center;
+    display: flex;
+}
+
+.home-review-nav .swiper-buttons-wrap {
+    display: flex;
+    gap: 14px;
+}
+
+.home-review-nav button {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid #e5e2ff;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--review-primary);
+    transition: all 0.25s ease;
+}
+
+.home-review-nav button:hover {
+    background: linear-gradient(135deg, var(--review-primary), var(--review-primary-light));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.35);
+}
+
+/* Owl dots (home slider) */
+.home-review-slider .owl-dots {
+    text-align: center;
+    margin-top: 6px;
+}
+
+.home-review-slider .owl-dot span {
+    width: 8px;
+    height: 8px;
+    margin: 4px;
+    background: #ddd;
+    display: inline-block;
+    border-radius: 50%;
+    transition: all 0.25s ease;
+}
+
+.home-review-slider .owl-dot.active span {
+    background: var(--review-primary);
+    width: 22px;
+    border-radius: 5px;
+}
+
+@media (max-width: 767px) {
+    .home-review-card {
+        margin: 6px 6px 26px;
+        padding: 20px;
+    }
+
+    .review-form-card {
+        padding: 24px;
+    }
+
+    .review-list-wrap {
+        max-height: none;
+        margin-top: 28px;
+    }
+}

@@ -1,0 +1,61 @@
+/*============================================================================================*/
+/* Your custom styles below */
+/*============================================================================================*/
+/* Mobile Vega Subcategory Improve */
+#mobile-vega-menu .menu-dropdown {
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 5px 10px 10px;
+    padding: 8px 0;
+}
+
+#mobile-vega-menu .productsupmenu-li a {
+    display: block;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #444;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#mobile-vega-menu .productsupmenu-li a:hover {
+    background: #6c5ce7;
+    color: #fff;
+}
+
+#mobile-vega-menu .menu-arrow i {
+    transition: transform 0.3s ease;
+}
+
+#mobile-vega-menu a[aria-expanded="true"] .menu-arrow i {
+    transform: rotate(45deg);
+}
+#search-suggestions {
+    display: none;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+    border-radius: 8px;
+    z-index: 9999;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+#search-suggestions a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #222;
+}
+
+#search-suggestions a:hover {
+    background: #f5f5f5;
+}
+
+.search-title {
+    background: #efefef;
+    padding: 8px 15px;
+    font-weight: bold;
+}
+
